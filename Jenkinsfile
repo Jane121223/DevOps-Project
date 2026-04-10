@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone Code') {
             steps {
-                git 'your-repo-link'
+                git 'https://github.com/Jane121223/DevOps-Project.git''
             }
         }
 
