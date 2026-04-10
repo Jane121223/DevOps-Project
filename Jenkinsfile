@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Code') {
-            steps {
-                git 'https://github.com/Jane121223/DevOps-Project.git'
-            }
-        }
 
         stage('Build Docker Image') {
             steps {
@@ -19,5 +14,12 @@ pipeline {
                 sh 'kubectl apply -f deployment.yaml'
             }
         }
+
+        stage('Auto Scale') {
+            steps {
+                sh 'kubectl autoscale deployment devops-app --cpu-percent=50 --min=1 --max=5'
+            }
+        }
+
     }
 }
