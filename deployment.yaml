@@ -14,7 +14,6 @@ spec:
     spec:
       containers:
       - name: devops-app
-        image: devops-app
-        imagePullPolicy: Never
+        image: devops-app   # same as Jenkins build
         ports:
         - containerPort: 80

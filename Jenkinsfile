@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     stages {
-
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t devops-app .'
@@ -11,15 +10,8 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh 'kubectl apply -f deployment.yaml'
+                sh 'kubectl apply -f deployment.yaml --validate=false'
             }
         }
-
-        stage('Auto Scale') {
-            steps {
-                sh 'kubectl autoscale deployment devops-app --cpu-percent=50 --min=1 --max=5'
-            }
-        }
-
     }
 }
